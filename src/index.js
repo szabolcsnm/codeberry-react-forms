@@ -24,7 +24,7 @@ import '../src/index.css';
 class Form extends React.Component {
   constructor(props) {
     super(props);
-    this.state = { username: '' };
+    this.state = { username: 'Default Name' };
   }
   formChangeHandler = (event) => {
     this.setState({username: event.target.value});
@@ -32,6 +32,7 @@ class Form extends React.Component {
   formSubmitHandler = (event) => {
     event.preventDefault();
     alert("We are submitting!");
+    this.setState({username: '',});
   }
   render () {
       return (
@@ -40,7 +41,7 @@ class Form extends React.Component {
                   <h1>Form</h1>
                   <form onSubmit={this.formSubmitHandler}>
                     <label>Name:
-                      <input type="text" onChange={this.formChangeHandler}/>
+                      <input type="text" value={this.state.username} onChange={this.formChangeHandler}/>
                       <input type="submit"/>
                     </label>
 
