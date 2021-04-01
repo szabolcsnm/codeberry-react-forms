@@ -24,32 +24,62 @@ import '../src/index.css';
 class Form extends React.Component {
   constructor(props) {
     super(props);
-    this.state = { username: 'Default Name' };
+    this.state = { 
+      firstname: 'Babin',
+      lastname: 'Kuk',
+      email: 'babinkuk@gmail.com',
+      password: '******'
+  };
+
   }
   formChangeHandler = (event) => {
-    this.setState({username: event.target.value});
+      const name = event.target.name;
+      const value = event.target.value;
+
+      this.setState({
+        [name]: value
+      });
+
   }
+
   formSubmitHandler = (event) => {
     event.preventDefault();
     alert("We are submitting!");
-    this.setState({username: '',});
+    this.setState({
+      firstname: '',
+      lastname: '',
+      email: '',
+      password: '',
+    });
   }
+
   render () {
       return (
           <div className="container">
               <div className="form-input">
                   <h1>Form</h1>
                   <form onSubmit={this.formSubmitHandler}>
-                    <label>Name:
-                      <input type="text" value={this.state.username} onChange={this.formChangeHandler}/>
+                    <label>First Name:
+                      <input type="text" name="firstname" value={this.state.firstname} onChange={this.formChangeHandler}/>
+                    </label><br/>
+                    <label>Last Name:
+                      <input type="text" name="lastname" value={this.state.lastname} onChange={this.formChangeHandler}/>
+                    </label><br/>
+                    <label> E-mail:
+                      <input type="text" name="email" value={this.state.email} onChange={this.formChangeHandler}/>
+                    </label><br/>
+                    <label>Password:
+                      <input type="text" name="password" value={this.state.password} onChange={this.formChangeHandler}/>
                       <input type="submit"/>
                     </label>
-
                   </form>
               </div>
               <div className="form-output">
                   <h1>Output</h1>
-                  <p><strong>Name:</strong> {this.state.username}</p>
+                  <p><strong>First Name:</strong> {this.state.firstname}</p>
+                  <p><strong>Last Name:</strong> {this.state.lastname}</p>
+                  <p><strong>E-mail:</strong> {this.state.email}</p>
+                  <p><strong>Password:</strong> {this.state.password}</p>
               </div>
           </div>
       )
