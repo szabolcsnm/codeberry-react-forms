@@ -22,6 +22,13 @@ import ReactDOM from 'react-dom';
 import '../src/index.css';
 
 class Form extends React.Component {
+  constructor(props) {
+    super(props);
+    this.state = { username: '' };
+  }
+  formChangeHandler = (event) => {
+    this.setState({username: event.target.value});
+  }
   render () {
       return (
           <div className="container">
@@ -29,13 +36,14 @@ class Form extends React.Component {
                   <h1>Form</h1>
                   <form>
                     <label>Name:
-                      <input type="text" id="myInput"></input>
+                      <input type="text" onChange={this.formChangeHandler}/>
                     </label>
 
                   </form>
               </div>
               <div className="form-output">
                   <h1>Output</h1>
+                  <p><strong>Name:</strong> {this.state.username}</p>
               </div>
           </div>
       )
